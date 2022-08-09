@@ -8,9 +8,9 @@ COPY requirements.txt .
 COPY dev_requirements.txt .
 
 RUN apt-get update && \
-    apt-get install -y netcat-openbsd gcc && \
+    apt-get install -y --no-install-recommends netcat-openbsd=1.130 gcc=10.4 && \
     apt-get clean && \
-    pip install -r dev_requirements.txt  && \
+    pip install --no-cache-dir -r dev_requirements.txt && \
     apt purge -y gcc && \
     apt autoremove -y && \
     rm -rf /var/lib/apt/lists/*
